@@ -10,6 +10,7 @@ defaults:
 
 jobs:
   build-and-publish:
+    name: Build & Publish
     runs-on: ubuntu-latest
     steps:
       - name: "Repo: Checkout"
@@ -22,9 +23,16 @@ jobs:
           tag: ${{ github.sha }}
           containerRegistry: true
       - name: "Docker: Image URL"
-        run: "echo Docker Image URL: ${{ steps.build.outputs.imageURL }}:${{ github.sha }}"
-      - name: "Feedback: Image URL"
+        run: echo ::set-env name=FULL_IMAGE_URL::${{ steps.build.outputs.imageURL }}:${{ github.sha }}
+      - name: "Feedback: Image Comment"
         uses: peter-evans/commit-comment@v1
         with:
           body: |
-             :tada: **Testing Docker image published:** ${{ steps.build.outputs.imageURL }}:${{ github.sha }}"
+             :tada: **Docker testing image published**
+
+             URL: ${{ FULL_IMAGE_URL }}
+
+             To use the image:
+             ```
+             docker pull ${{ FULL_IMAGE_URL }}
+             ```
