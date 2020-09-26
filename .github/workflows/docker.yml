@@ -22,4 +22,4 @@ jobs:
           tag: ${{ github.sha }}
           containerRegistry: true
       - name: "Docker: Image URL"
-        run: "echo Docker Image URL:" ${{ steps.build.outputs.imageURL }}:${{ github.sha }}
+        run: "echo Docker Image URL: ${{ steps.build.outputs.imageURL }}:${{ github.sha }}"
