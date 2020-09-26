@@ -9,7 +9,7 @@ defaults:
     shell: bash
 
 jobs:
-  build-and-deploy:
+  build-and-publish:
     runs-on: ubuntu-latest
     steps:
       - name: "Repo: Checkout"
@@ -23,3 +23,8 @@ jobs:
           containerRegistry: true
       - name: "Docker: Image URL"
         run: "echo Docker Image URL: ${{ steps.build.outputs.imageURL }}:${{ github.sha }}"
+      - name: "Feedback: Image URL"
+        uses: peter-evans/commit-comment@v1
+        with:
+          body: |
+             :tada: Docker Image Published: ${{ steps.build.outputs.imageURL }}:${{ github.sha }}"
