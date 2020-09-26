@@ -30,9 +30,9 @@ jobs:
           body: |
              :tada: **Docker testing image published**
 
-             URL: ${{ FULL_IMAGE_URL }}
+             URL: $FULL_IMAGE_URL
 
              To use the image:
              ```
-             docker pull ${{ FULL_IMAGE_URL }}
+             docker pull $FULL_IMAGE_URL
              ```
