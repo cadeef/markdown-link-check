@@ -27,4 +27,4 @@ jobs:
         uses: peter-evans/commit-comment@v1
         with:
           body: |
-             :tada: Docker Image Published: ${{ steps.build.outputs.imageURL }}:${{ github.sha }}"
+             :tada: **Testing Docker image published:** ${{ steps.build.outputs.imageURL }}:${{ github.sha }}"
