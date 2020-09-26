@@ -1,0 +1,25 @@
+name: Docker
+
+on:
+  pull_request:
+  push:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Repo: Checkout"
+        uses: actions/checkout@v2
+      - name: "Docker: Build & Publish"
+        id: build
+        uses: matootie/github-docker@v3.1.0
+        with:
+          accessToken: ${{ secrets.PUBLISH_TOKEN }}
+          tag: ${{ github.sha }}
+          containerRegistry: true
+      - name: "Docker: Image URL"
+        run: "echo Docker Image URL:" ${{ steps.build.outputs.imageURL }}:${{ github.sha }}
