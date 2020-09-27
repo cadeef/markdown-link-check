@@ -1,7 +1,10 @@
 name: Docker
 
 on:
-  [push, pull_request]:
+  pull_request:
+    paths-ignore:
+      - '.**'
+  push:
     paths-ignore:
       - '.**'
 
