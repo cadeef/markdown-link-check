@@ -24,7 +24,7 @@ jobs:
           containerRegistry: true
       - name: "Docker: Image URL"
         run: echo ::set-env name=FULL_IMAGE_URL::${{ steps.build.outputs.imageURL }}:${{ github.sha }}
-      - name: "Feedback: Image Comment"
+      - name: "Feedback: Commit Comment"
         uses: peter-evans/commit-comment@v1
         with:
           body: |
