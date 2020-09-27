@@ -38,16 +38,15 @@ jobs:
           body: |
            :tada: **Docker testing image published**
 
-           **URL:** ${{ env.FULL_SNAPSHOT_URL }}
+           **URL:** `${{ env.FULL_SNAPSHOT_URL }}`
 
            To use the image:
            ```
            docker pull ${{ env.FULL_SNAPSHOT_URL }}
            ```
 
-           Additionally, the most recent build for this branch is tagged ${{ steps.build.outputs.tag }}
+           Additionally, the most recent build for this branch is tagged `${{ steps.build.outputs.tag }}`, to use it:
 
-           To use it:
             ```
            docker pull ${{ env.IMAGE_URL }}:${{ steps.build.outputs.tag }}
            ```
