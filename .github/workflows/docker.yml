@@ -13,17 +13,23 @@ jobs:
     name: Build & Publish
     runs-on: ubuntu-latest
     steps:
+      - name: "Config: Image Name"
+        run: echo ::set-env name=IMAGE_NAME::${{ github.repository_owner }}/$(basename ${{ github.repository }})
+      - name: "Config: Registry"
+        run: echo ::set-env name=REGISTRY::ghcr.io
       - name: "Repo: Checkout"
         uses: actions/checkout@v2
       - name: "Docker: Build & Publish"
         id: build
-        uses: matootie/github-docker@v3.1.0
+        uses: elgohr/Publish-Docker-Github-Action@master
         with:
-          accessToken: ${{ secrets.PUBLISH_TOKEN }}
-          tag: ${{ github.sha }}
-          containerRegistry: true
-      - name: "Docker: Image URL"
-        run: echo ::set-env name=FULL_IMAGE_URL::${{ steps.build.outputs.imageURL }}:${{ github.sha }}
+          name: ${{ env.IMAGE_NAME }}
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.PUBLISH_TOKEN }}
+          snapshot: true
+      - name: "Config: Full Image URL"
+        run: echo ::set-env name=FULL_IMAGE_URL::${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.build.outputs.snapshot-tag }}
       - name: "Feedback: Commit Comment"
         uses: peter-evans/commit-comment@v1
         with:
