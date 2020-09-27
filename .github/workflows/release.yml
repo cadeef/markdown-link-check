@@ -25,7 +25,7 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.repository_owner }}
           password: ${{ secrets.PUBLISH_TOKEN }}
-          tags: stable
+          tags: latest, stable
           tag_semver: true
       - name: "Config: Full Image URL"
         run: echo ::set-env name=FULL_SNAPSHOT_URL::${{ env.IMAGE_URL }}:${{ steps.build.outputs.tag }}
