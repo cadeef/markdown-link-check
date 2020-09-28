@@ -18,13 +18,13 @@ To install the command line tool globally, run:
 
 ## Run using Docker
 
-Build a Docker image:
-
-    docker build --tag markdown-link-check .
+Docker images are built with each release. Use the `stable` tag for the current stable release.
 
 Pipe your `README.md` file to `docker run`:
 
-    docker run --rm -i markdown-link-check < README.md
+    docker run --rm -i ghcr.io/tcort/markdown-link-check:stable < README.md
+
+Alternatively, if you wish to target a specific release, images are tagged with semantic versions (i.e. `3`, `3.8`, `3.8.3`)
 
 ## Run in a GitHub action
 
