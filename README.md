@@ -24,6 +24,8 @@ Pipe your `README.md` file to `docker run`:
 
     docker run --rm -i ghcr.io/tcort/markdown-link-check:stable < README.md
 
+Alternatively, if you wish to target a specific release, images are tagged with semantic versioning (i.e. `3`, `3.8`, `3.8.3`)
+
 ## Run in a GitHub action
 
 Please head on to [github-action-markdown-link-check](https://github.com/gaurav-nelson/github-action-markdown-link-check).
